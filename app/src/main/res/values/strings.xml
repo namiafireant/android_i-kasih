@@ -1,11 +1,32 @@
 <resources>
+    <!--default-->
     <string name="app_name">i-kasih</string>
     <string name="image_chooser">i-kasih</string>
     <string name="title">i-Kasih</string>
+
+    <!--icon name-->
     <string name="icon_1">find</string>
     <string name="icon_2">scan</string>
     <string name="icon_3">list</string>
     <string name="icon_4">news</string>
+
+    <!--button name-->
     <string name="btnCamera">Take Picture</string>
+    <string name="btnSearchAgain">Search Again</string>
+
+    <!--page title-->
     <string name="titleCamera">Camera</string>
+    <string name="titleList">Drug List</string>
+    <string name="titleFind">Find Drug</string>
+    <string name="titleNews">News</string>
+    <string name="titleResult">Result</string>
+
+    <!--text-->
+    <string name="txt_drug">Drug :</string>
+    <string name="txt_strength">Strength :</string>
+    <string name="txt_imprint">Imprint :</string>
+    <string name="txt_shape">Shape :</string>
+    <string name="txt_color">Color :</string>
+    <string name="txt_answer"></string>
+
 </resources>
