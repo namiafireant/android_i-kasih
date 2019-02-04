@@ -6,4 +6,6 @@
     <string name="icon_2">scan</string>
     <string name="icon_3">list</string>
     <string name="icon_4">news</string>
+    <string name="btnCamera">Take Picture</string>
+    <string name="titleCamera">Camera</string>
 </resources>
