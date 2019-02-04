@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">i-kasih</string>
+    <string name="image_chooser">i-kasih</string>
+    <string name="title">i-Kasih</string>
+    <string name="icon_1">find</string>
+    <string name="icon_2">scan</string>
+    <string name="icon_3">list</string>
+    <string name="icon_4">news</string>
+</resources>
