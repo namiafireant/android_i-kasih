@@ -30,12 +30,14 @@
         android:id="@+id/imageButton2"
         android:layout_width="130dp"
         android:layout_height="130dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="60dp"
-        android:src="@drawable/newspaper"
         android:background="@null"
         android:contentDescription="@string/icon_4"
+        android:src="@drawable/newspaper"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton3"
         app:layout_constraintTop_toBottomOf="@+id/imageButton8" />
 
     <ImageButton
@@ -44,9 +46,12 @@
         android:layout_height="130dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="31dp"
         android:background="@null"
-        android:src="@drawable/test"
         android:contentDescription="@string/icon_3"
+        android:onClick="goToList"
+        android:src="@drawable/test"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
 
@@ -56,9 +61,11 @@
         android:layout_height="130dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="31dp"
         android:background="@null"
         android:contentDescription="@string/icon_1"
         android:src="@drawable/vision"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
@@ -66,12 +73,14 @@
         android:id="@+id/imageButton8"
         android:layout_width="130dp"
         android:layout_height="130dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="60dp"
         android:background="@null"
         android:contentDescription="@string/icon_2"
         android:src="@drawable/zoom"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <TextView
