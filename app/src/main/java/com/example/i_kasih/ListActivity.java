@@ -1,5 +1,6 @@
 package com.example.i_kasih;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.i_kasih.R;
+import com.example.i_kasih.RecyclerItemListener;
 
 
 import org.json.JSONArray;
@@ -38,7 +41,7 @@ public class ListActivity extends AppCompatActivity {
 
     private static  final int REQUEST_CODE_ADD =1;
     private static  final int REQUEST_CODE_EDIT =2;
-    private ListActivity<Drug> drugListActivity = new ArrayList<Drug>();
+    private List<Drug> barangList = new ArrayList<Drug>();
     private ProgressDialog pDialog;
 
     @Override
@@ -68,7 +71,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void gambarDatakeRecyclerView(){
-        rvAdapter = new DrugAdapter(drugListActivity);
+        rvAdapter = new DrugAdapter(barangList);
         mRecyclerView.setAdapter(rvAdapter);
         mRecyclerView.addOnItemTouchListener(
                 new RecyclerItemListener(context, new RecyclerItemListener.OnItemClickListener() {
@@ -109,8 +112,8 @@ public class ListActivity extends AppCompatActivity {
     //ambil data sever volley
     private void loadDataServerVolley(){
 
-        String url = AppConfig.IP_SERVER+"/drug/listdata.php";
-        pDialog.setMessage("Retieve Data Drug...");
+        String url = AppConfig.IP_SERVER+"/barang/listdata.php";
+        pDialog.setMessage("Retrieve Data Barang...");
         showDialog();
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
@@ -150,18 +153,18 @@ public class ListActivity extends AppCompatActivity {
             JSONObject jsonObj = new JSONObject(response);
             JSONArray jsonArray = jsonObj.getJSONArray("data");
             Log.d("TAG", "data length: " + jsonArray.length());
-            Drug objectdrug = null;
-            drugListActivity.clear();
+            Drug objectbarang = null;
+            barangList.clear();
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
-                objectdrug= new Drug();
-                objectdrug.setId(obj.getString("id"));
+                objectbarang= new Drug();
+                objectbarang.setId(obj.getString("id"));
 
-                objectdrug.setNama(obj.getString("nama"));
-                objectdrug.setKode(obj.getString("kode"));
-                objectdrug.setHarga(obj.getString("harga"));
+                objectbarang.setNama(obj.getString("nama"));
+                objectbarang.setKode(obj.getString("kode"));
+                objectbarang.setHarga(obj.getString("harga"));
 
-                drugListActivity.add(objectdrug);
+                barangList.add(objectbarang);
             }
 
         } catch (JSONException e) {
@@ -186,5 +189,18 @@ public class ListActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }
