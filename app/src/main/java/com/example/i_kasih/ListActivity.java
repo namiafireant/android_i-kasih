@@ -28,8 +28,8 @@ public class ListActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ListView listView;
 
-    //we will use this list to display hero in listview
-    List<AttributeDrug> heroList;
+    //we will use this list to display data drug in listview
+    List<AttributeDrug> drugList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class ListActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         listView = (ListView) findViewById(R.id.listViewDrug);
 
-        heroList = new ArrayList<>();
+        drugList = new ArrayList<>();
 
-        //calling the method read heroes to read existing heros from the database
-        readHeroes();
+        //calling the method read data to read existing drug data from the database
+        readData();
     }
 
     //mula
@@ -81,7 +81,7 @@ public class ListActivity extends AppCompatActivity {
                 JSONObject object = new JSONObject(s);
                 if (!object.getBoolean("error")) {
                     Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    //refreshing the herolist after every operation
+                    //refreshing the data list after every operation
                     //so we get an updated list
                     //we will create this method right now it is commented
                     refreshHeroList(object.getJSONArray("heroes"));
@@ -127,21 +127,23 @@ public class ListActivity extends AppCompatActivity {
 
             //getting the textview for displaying name
             TextView textViewName = listViewItem.findViewById(R.id.textViewName);
+            TextView textViewDesc = listViewItem.findViewById(R.id.textViewDesc);
 
             final AttributeDrug hero = heroList.get(position);
 
             textViewName.setText(hero.getName());
+            textViewDesc.setText(hero.getDdesc());
 
             return listViewItem;
         }
     }
-    private void readHeroes() {
-        PerformNetworkRequest request = new PerformNetworkRequest(AppConfig.URL_READ_HEROES, null, CODE_GET_REQUEST);
+    private void readData() {
+        PerformNetworkRequest request = new PerformNetworkRequest(AppConfig.URL_READ_DATA, null, CODE_GET_REQUEST);
         request.execute();
     }
     private void refreshHeroList(JSONArray heroes) throws JSONException {
         //clearing previous heroes
-        heroList.clear();
+        drugList.clear();
 
         //traversing through all the items in the json array
         //the json we got from the response
@@ -150,17 +152,15 @@ public class ListActivity extends AppCompatActivity {
             JSONObject obj = heroes.getJSONObject(i);
 
             //adding the hero to the list
-            heroList.add(new AttributeDrug(
+            drugList.add(new AttributeDrug(
                     obj.getInt("id"),
                     obj.getString("name"),
-                    obj.getString("realname"),
-                    obj.getInt("rating"),
-                    obj.getString("teamaffiliation")
+                    obj.getString("ddesc")
             ));
         }
 
         //creating the adapter and setting it to the listview
-        HeroAdapter adapter = new HeroAdapter(heroList);
+        HeroAdapter adapter = new HeroAdapter(drugList);
         listView.setAdapter(adapter);
     }
     //END READ N REFRESH [R] Retrieve Display

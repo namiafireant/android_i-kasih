@@ -2,25 +2,15 @@ package com.example.i_kasih;
 
 public class AttributeDrug {
     private int id;
-    private String name, realname;
-    private int rating;
-    private String teamaffiliation;
+    private String name, ddesc;
 
-    public AttributeDrug(int id, String name, String realname, int rating, String teamaffiliation) {
+    public AttributeDrug(int id, String name, String ddesc) {
         this.id = id;
         this.name = name;
-        this.realname = realname;
-        this.rating = rating;
-        this.teamaffiliation = teamaffiliation;
+        this.ddesc = ddesc;
     }
 
     public int getId() { return id; }
     public String getName() { return name; }
-    public String getRealname() { return realname; }
-    public int getRating() {
-        return rating;
-    }
-    public String getTeamaffiliation() {
-        return teamaffiliation;
-    }
+    public String getDdesc() { return ddesc; }
 }
