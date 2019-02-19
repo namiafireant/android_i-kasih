@@ -121,10 +121,11 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="327dp"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/searchborder"
         android:ems="10"
         android:hint="Search..."
         android:inputType="textPersonName"

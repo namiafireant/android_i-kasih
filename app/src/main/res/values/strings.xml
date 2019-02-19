@@ -1,24 +1,32 @@
 <resources>
+
     <string name="app_name">i-kasih</string>
     <string name="drug_list">Drug List</string>
     <string name="drugName">Horse Pill</string>
     <string name="DrugDesc">Very dangerous for human</string>
-
-
-    <array name="teams">
-        <item>Avengers</item>
-        <item>Justice League</item>
-        <item>X-Men</item>
-        <item>Fantastic Four</item>
-    </array>
-
-
     <!--page title-->
     <string name="titleCamera">Camera</string>
     <string name="titleList">Drug List</string>
     <string name="titleFind">Find Drug</string>
     <string name="titleNews">News</string>
     <string name="titleResult">Result</string>
+    <!--text-->
+    <string name="txt_drug">Drug :</string>
+    <string name="txt_strength">Strength :</string>
+    <string name="txt_imprint">Imprint :</string>
+    <string name="txt_shape">Shape :</string>
+    <string name="txt_color">Color :</string>
+    <string name="txt_answer"></string>
+    <!--button name-->
+    <string name="btnCamera">Take Picture</string>
+    <string name="btnSearchAgain">Search Again</string>
 
+    <!-- Test Selection -->
+    <array name="teams">
+        <item>Avengers</item>
+        <item>Justice League</item>
+        <item>X-Men</item>
+        <item>Fantastic Four</item>
+    </array>
 
 </resources>
