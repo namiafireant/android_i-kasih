@@ -22,11 +22,17 @@
     <string name="btnSearchAgain">Search Again</string>
 
     <!-- Test Selection -->
-    <array name="teams">
-        <item>Avengers</item>
-        <item>Justice League</item>
-        <item>X-Men</item>
-        <item>Fantastic Four</item>
+    <array name="spinnerColorValue">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Black</item>
+        <item>Green</item>
+    </array>
+    <array name="spinnerShapeValue">
+        <item>Round</item>
+        <item>Box</item>
+        <item>Sand</item>
+        <item>Pill</item>
     </array>
 
 </resources>

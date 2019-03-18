@@ -154,7 +154,7 @@ public class ListActivity extends AppCompatActivity {
             //adding the hero to the list
             drugList.add(new AttributeDrug(
                     obj.getInt("id"),
-                    obj.getString("name"),
+                    obj.getString("dname"),
                     obj.getString("ddesc")
             ));
         }
