@@ -1,12 +1,16 @@
 package com.example.i_kasih;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +31,8 @@ public class ListActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
     ListView listView;
+
+    ImageView iv_retrive;
 
     //we will use this list to display data drug in listview
     List<AttributeDrug> drugList;
@@ -99,7 +105,6 @@ public class ListActivity extends AppCompatActivity {
             if (requestCode == CODE_POST_REQUEST)
                 return requestHandler.sendPostRequest(url, params);
 
-
             if (requestCode == CODE_GET_REQUEST)
                 return requestHandler.sendGetRequest(url);
 
@@ -128,15 +133,33 @@ public class ListActivity extends AppCompatActivity {
             //getting the textview for displaying name
             TextView textViewName = listViewItem.findViewById(R.id.textViewName);
             TextView textViewDesc = listViewItem.findViewById(R.id.textViewDesc);
+            iv_retrive = (ImageView) listViewItem.findViewById(R.id.iv_retrive); /*******  try set data image   *******/
 
             final AttributeDrug hero = heroList.get(position);
 
             textViewName.setText(hero.getName());
             textViewDesc.setText(hero.getDdesc());
 
+            //String imagedecode = getResources().getString(R.string.iv_retrive);
+
+            //String imagedecode = getResources().getString(R.string.image4);
+            //String imagedecode = hero.getImage();
+
+            iv_retrive.setImageBitmap(decodeFromBase64ToBitmap(hero.getImage())); /*** Buat nga aiman*/
+            //iv_retrive.setImageBitmap(decodeFromBase64ToBitmap(imagedecode));
+            //iv_retrive.setImageBitmap(hero.getImage()); /*******  try set data image   *******/
+
             return listViewItem;
         }
     }
+
+    private Bitmap decodeFromBase64ToBitmap(String encodedImage)
+    {
+        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
+    }
+
     private void readData() {
         PerformNetworkRequest request = new PerformNetworkRequest(AppConfig.URL_READ_DATA, null, CODE_GET_REQUEST);
         request.execute();
@@ -155,7 +178,8 @@ public class ListActivity extends AppCompatActivity {
             drugList.add(new AttributeDrug(
                     obj.getInt("id"),
                     obj.getString("dname"),
-                    obj.getString("ddesc")
+                    obj.getString("ddesc"),
+                    obj.getString("dimage")
             ));
         }
 
