@@ -15,9 +15,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="24dp"
         android:layout_weight="8"
         android:text="@string/drugName"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
@@ -28,21 +28,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewName"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="2dp"
         android:text="@string/DrugDesc" />
 
     <ImageView
         android:id="@+id/iv_retrive"
-        android:layout_width="66dp"
-        android:layout_height="107dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_above="@+id/textViewName"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="-89dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic[5]"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="-69dp"
         android:contentDescription="TODO" />
 
 

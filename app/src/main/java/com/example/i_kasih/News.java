@@ -1,5 +1,6 @@
 package com.example.i_kasih;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,13 +24,12 @@ import java.util.List;
 import static android.view.View.GONE;
 
 public class News extends AppCompatActivity {
-
     private static final int CODE_GET_REQUEST = 1024;
     private static final int CODE_POST_REQUEST = 1025;
-
     ProgressBar progressBar;
     ListView listView;
     List<AttributeNews> newsList;
+    ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,14 @@ public class News extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         listView = (ListView) findViewById(R.id.listViewNews);
-
         newsList = new ArrayList<>();
-
         //calling the method read data to read existing drug data from the database
+
+
+        pDialog = new ProgressDialog(News.this);
+        pDialog.setCancelable(true);
+        //pDialog.setMessage("Loading...");
+        //showDialog();
         readData();
     }
 
@@ -108,8 +112,8 @@ public class News extends AppCompatActivity {
     }
     //tamat
     //new inner class
-    class NewsAdapter extends ArrayAdapter<AttributeNews> {
 
+    class NewsAdapter extends ArrayAdapter<AttributeNews> {
         //our hero list
         List<AttributeNews> newsList;
 
@@ -136,8 +140,14 @@ public class News extends AppCompatActivity {
         }
     }
     private void readData() {
+        try{
         News.PerformNetworkRequest request = new News.PerformNetworkRequest(AppConfig.URL_NEWS, null, CODE_GET_REQUEST);
         request.execute();
+        }
+        catch(Exception e){
+            pDialog.setMessage(e.getMessage() );
+            showDialog();
+        }
     }
     private void refreshNewsList(JSONArray heroes) throws JSONException {
         //clearing previous heroes
@@ -160,4 +170,10 @@ public class News extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
     //END READ N REFRESH [R] Retrieve Display
+
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
 }

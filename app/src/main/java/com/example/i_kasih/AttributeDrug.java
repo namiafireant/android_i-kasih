@@ -1,7 +1,5 @@
 package com.example.i_kasih;
 
-import android.graphics.Bitmap;
-
 public class AttributeDrug {
     private int id;
     private String name, ddesc;
