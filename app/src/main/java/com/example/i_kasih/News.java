@@ -1,13 +1,17 @@
 package com.example.i_kasih;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,8 +32,9 @@ public class News extends AppCompatActivity {
     private static final int CODE_POST_REQUEST = 1025;
     ProgressBar progressBar;
     ListView listView;
-    List<AttributeNews> newsList;
+    ImageView imageNews;
     ProgressDialog pDialog;
+    List<AttributeNews> newsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,6 @@ public class News extends AppCompatActivity {
         //showDialog();
         readData();
     }
-
     //mula
     //inner class to perform network request extending an AsyncTask
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
@@ -131,13 +135,20 @@ public class News extends AppCompatActivity {
 
             //getting the textview for displaying name
             TextView textViewName = listViewItem.findViewById(R.id.textViewNews);
+            imageNews = (ImageView) listViewItem.findViewById(R.id.imageNews);
 
             final AttributeNews news = newsList.get(position);
 
             textViewName.setText(news.getNewsTitle());
+            imageNews.setImageBitmap(decodeFromBase64ToBitmap(news.getNewsImg()));
 
             return listViewItem;
         }
+    }
+    private Bitmap decodeFromBase64ToBitmap(String encodedImage) {
+        byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
     }
     private void readData() {
         try{
@@ -161,7 +172,8 @@ public class News extends AppCompatActivity {
 
             //adding the hero to the list
             newsList.add(new AttributeNews(
-                    obj.getString("title")
+                    obj.getString("title"),
+                    obj.getString("newimg")
             ));
         }
 
@@ -170,7 +182,6 @@ public class News extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
     //END READ N REFRESH [R] Retrieve Display
-
 
     private void showDialog() {
         if (!pDialog.isShowing())

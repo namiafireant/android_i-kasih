@@ -1,15 +1,18 @@
 package com.example.i_kasih;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -45,6 +48,10 @@ public class Find extends AppCompatActivity {
     private ArrayList<String> arrayList;
     private ArrayList<String> arrayList2;
 
+    public static final String IMPRINT_MESSAGE = "No IMPRINT Input";
+    public static final String COLOR_MESSAGE = "No COLOR Input";
+    public static final String SHAPE_MESSAGE = "No SHAPE Input";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +70,45 @@ public class Find extends AppCompatActivity {
         pDialog.setMessage("Loading...");
         showDialog();
 
-        readData();
+        readColor();
         readShape();
+
+        Button buttonFind = (Button) findViewById(R.id.buttonFind);
+        buttonFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //goToResult();
+                findProcess();
+            }
+        });
+
     }
 
-    private void readData() {
+    public void findProcess(){
+        String imprint = editTextImprint.getText().toString().trim();
+        String color = spinnerColor.getSelectedItem().toString();
+        String shape = spinnerShape.getSelectedItem().toString();
+
+        //validating the inputs
+        if (TextUtils.isEmpty(imprint)) {
+            editTextImprint.setError("Please enter imprint");
+            editTextImprint.requestFocus();
+            return;
+        }
+        //if validation passes
+        //HashMap<String, String> params = new HashMap<>();
+        //params.put("imprint", imprint);
+        //params.put("color", color);
+        //params.put("shape", shape);
+
+        Intent intent = new Intent(this, Result.class);
+        intent.putExtra(IMPRINT_MESSAGE, imprint);
+        intent.putExtra(COLOR_MESSAGE, color);
+        intent.putExtra(SHAPE_MESSAGE, shape);
+        startActivity(intent);
+    }
+
+    private void readColor() {
             StringRequest stringRequest = new StringRequest(AppConfig.URL_SPINNER,
                     new Response.Listener<String>() {
                         @Override
@@ -153,4 +194,5 @@ public class Find extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
 }

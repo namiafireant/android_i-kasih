@@ -78,7 +78,6 @@
 
     <Spinner
         android:id="@+id/spinnerShape"
-        android:entries="@array/spinnerShapeValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

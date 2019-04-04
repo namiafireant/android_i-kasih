@@ -52,7 +52,6 @@ public class ListActivity extends AppCompatActivity {
     }
 
     //mula
-    //inner class to perform network request extending an AsyncTask
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
 
         //the url where we need to send the request
@@ -152,14 +151,11 @@ public class ListActivity extends AppCompatActivity {
             return listViewItem;
         }
     }
-
-    private Bitmap decodeFromBase64ToBitmap(String encodedImage)
-    {
+    private Bitmap decodeFromBase64ToBitmap(String encodedImage) {
         byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
     }
-
     private void readData() {
         PerformNetworkRequest request = new PerformNetworkRequest(AppConfig.URL_READ_DATA, null, CODE_GET_REQUEST);
         request.execute();
